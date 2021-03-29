@@ -5,7 +5,7 @@ public class Usuario {
 		private String nombre;
 		private String dni;
 		private int tlfn;
-		private boolean conectado;
+		private String mail;
 		
 
 		public Usuario() {
@@ -13,14 +13,14 @@ public class Usuario {
 			nombre=" ";
 			dni=" ";
 			tlfn=0;
-			conectado=false;
+			mail=" ";
 		}	
-		public Usuario(String nombre,String dni,int tlfn,boolean conectado) {
+		public Usuario(String nombre,String dni,int tlfn,String mail) {
 			
 			this.nombre=nombre;
 			this.dni=dni;
 			this.tlfn=tlfn;
-			this.conectado=conectado;
+			this.mail=mail;
 		}
 		public String getNombre() {
 			return nombre;
@@ -40,17 +40,18 @@ public class Usuario {
 		public void setTlfn(int tlfn) {
 			this.tlfn = tlfn;
 		}
-		public boolean isConectado() {
-			return conectado;
+
+		public String getMail() {
+			return mail;
 		}
-		public void setConectado(boolean conectado) {
-			this.conectado = conectado;
+		public void setMail(String mail) {
+			this.mail = mail;
 		}
 		public String toString() {
 			
 			return "- Nombre: " + getNombre() + "\n"
 				 + "- DNI: " + getDni() + "\n"
 				 + "- Telefono: " + getTlfn() + "\n"
-				 + "- Conectado: " + isConectado();
+				 + "- Correo: " + getMail();
 		}
 }
