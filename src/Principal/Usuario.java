@@ -6,7 +6,7 @@ public class Usuario {
 		private String dni;
 		private int tlfn;
 		private String mail;
-		
+		private int edad;
 
 		public Usuario() {
 		
@@ -14,13 +14,16 @@ public class Usuario {
 			dni=" ";
 			tlfn=0;
 			mail=" ";
+			edad=0;
+			
 		}	
-		public Usuario(String nombre,String dni,int tlfn,String mail) {
+		public Usuario(String nombre,String dni,int tlfn,String mail,int edad) {
 			
 			this.nombre=nombre;
 			this.dni=dni;
 			this.tlfn=tlfn;
 			this.mail=mail;
+			this.edad=edad;
 		}
 		public String getNombre() {
 			return nombre;
@@ -40,18 +43,24 @@ public class Usuario {
 		public void setTlfn(int tlfn) {
 			this.tlfn = tlfn;
 		}
-
 		public String getMail() {
 			return mail;
 		}
 		public void setMail(String mail) {
 			this.mail = mail;
 		}
+		public int getEdad() {
+			return edad;
+		}
+		public void setEdad(int edad) {
+			this.edad=edad;
+		}
 		public String toString() {
 			
 			return "- Nombre: " + getNombre() + "\n"
 				 + "- DNI: " + getDni() + "\n"
 				 + "- Telefono: " + getTlfn() + "\n"
-				 + "- Correo: " + getMail();
+				 + "- Correo: " + getMail() + "\n"
+				 + "- Edad: " + getEdad();
 		}
 }
