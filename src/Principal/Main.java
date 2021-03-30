@@ -10,8 +10,10 @@ public class Main {
 	public static void main(String[] args) {
 		int ele = 0;
 		String menu = "1- Comprar juegos " + "\n"
-					+ "2- Modificar cuenta " + "\n"
-					+ "3- Salir"
+					+ "2- Modificar Cliente " + "\n"
+					+ "3- Añadir Juego \n"
+					+ "4- Añadir Cliente \n"
+					+ "5- Salir"
 					+ "---------------------------------------------";
 		Escaner esc = new Escaner();
 		
@@ -24,9 +26,17 @@ public class Main {
 			}
 			case 2: {
 				
-				modificacion();
+				modificarCliente();
 			}
 			case 3: {
+				
+				añadirJuego();
+			}
+			case 4: {
+				
+				añadirCliente();
+			}
+			case 5: {
 				
 				System.out.println("Saliendo...");
 			}
@@ -134,8 +144,18 @@ public class Main {
 		
 	}
 	
-	public static void modificacion() {
+	public static void modificarCliente() {
 		
+		System.out.println("Que se debe cambiar: \n"
+							+ "");
+		
+	}
+	
+	public static void añadirJuego() {
+		
+	}
+	
+	public static void añadirCliente() {
 		
 	}
 
