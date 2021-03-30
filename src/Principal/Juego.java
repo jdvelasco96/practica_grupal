@@ -11,26 +11,35 @@ public class Juego {
 	private String categ;
 	private int pegi;
 	private String descPegi;
+	private float precio;
 	
 	public Juego() {
-		
+		id = 0;
 		nombre="";
 		desc="";
 		categ="";
 		pegi=0;
 		descPegi="";
+		precio = 0;
 	}
-	public Juego(int id,String nombre,String desc,String categ,int pegi,String descPegi) {
+	public Juego(int id,String nombre,String desc,String categ,int pegi,String descPegi,float precio) {
 		this.id = id;
 		this.nombre=nombre;
 		this.desc=desc;
 		this.categ=categ;
 		this.pegi=pegi;
 		this.descPegi=descPegi;
+		this.precio = precio;
 	}
 	
 	
 	
+	public float getPrecio() {
+		return precio;
+	}
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
 	public int getId() {
 		return id;
 	}
@@ -67,6 +76,15 @@ public class Juego {
 		
 		
 	}
+	
+	public String getVa() {
+		
+		return getId() + ";" + getNombre() 
+			+ ";" + getDesc() + ";" + getCateg() 
+			+ ";" + getPegi() + ";" + getDescPegi() 
+			+ ";"+ getPrecio();
+	}
+	
 	public void setCateg() {
 		int num=0;
 		System.out.println("Selecciona la categoria que corresponde"

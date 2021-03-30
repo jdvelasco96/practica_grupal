@@ -1,18 +1,16 @@
 package Principal;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.*;
+import java.util.*;
 
 import Utiles.*;
 
 public class Main {
-
+	public static ArrayList<Juego> juegos = new ArrayList<Juego>();
+	public static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	public static void main(String[] args) {
-		ArrayList<Juego> juegos = new ArrayList<Juego>();
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		
-		
+		initialicer();
 		
 		int ele = 0;
 		String menu = "1- Comprar juegos " + "\n"
@@ -43,6 +41,15 @@ public class Main {
 				añadirCliente();
 			}
 			case 5: {
+				ArrayList<String> list = new ArrayList<String>();
+				for (Juego juegoG : juegos) {
+					list.add(juegoG.getVa());
+				}
+				try {
+					Utiles.EscrituraFichero.escribirFichero(list);
+				} catch (Exception e) {
+					System.out.println("ocurrio un error al guardar");
+				}
 				
 				System.out.println("Saliendo...");
 			}
@@ -51,6 +58,23 @@ public class Main {
 			}
 		}while(ele != 3);
 
+	}
+	
+	public static void initialicer() {
+		String[] datos;
+		try {
+			for (String string : Utiles.LecturaFichero.leerFichero("juegos.txt")) {
+				datos = string.split(string);
+				juegos.add(new Juego(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],Integer.parseInt(datos[4]),datos[5],Float.parseFloat(datos[6])));
+				System.out.println(string.toString());
+			}
+		} catch (Exception e) {
+			System.out.println("error al cargar");
+		}
+		
+		
+		
+		
 	}
 	
 	public static void compra() {
@@ -71,61 +95,59 @@ public class Main {
 					+ "\t 4- Cancelar compra \n";
 		
 		do {
-			System.out.println("todos los videojuegos // modificar con la lista");
+			System.out.println(juegos.toString());
 			System.out.println(menu);
 		
 			switch (ele = esc.nextInt()) {
 			case 1: {
-				/**
 				
 				do {
 				System.out.println("Escriba el ID");
 				id = esc.nextInt();
-				for (Juego busca : Juego) {
+				for (Juego busca : juegos) {
 					if (busca.getId() == id) {
 						carrito.add(id);
-						flag = true;
+						flagCom = true;
 						break;
 					}					
 				}
-				}while(flagCom == true)
-				**/
-			
+				}while(flagCom == true);
+				
 				break;
 			}case 2: {
 				
-				/**
+				
 				do {
 				System.out.println("Escriba el ID que desea quitar");
-				id = esc.nextInt;
+				id = esc.nextInt();
 				if (carrito.contains(id)) {
-					for (int i = 0; i < carrito.zice() ; i ++) {
+					for (int i = 0; i < carrito.size() ; i ++) {
 						if(id== carrito.get(i)){
 							carrito.remove(carrito.get(i));
-							flag = true;
-							syso("Se ha eliminado el juego de la lista")
+							flagDev = true;
+							System.out.println("Se ha eliminado el juego de la lista");
 							break;
 						}
 					}
 					
 				}else{
-					syso("Juego no se encuentra en el carro")
+					System.out.println("Juego no se encuentra en el carro");
 				}
 				
-				}while(flagDev == true)
-				**/
+				}while(flagDev == true);
+				
 				
 				break;
 			}
 			case 3: {
 				
 				fact = "Se ha comprado \n ";
-				/**
+				
 				for (Integer busca : carrito) {
-					for (Juego busca2 : juego) {
-						if (busca == juego.getId()) {
-							fact += juego.toString() + "\n";
-							total += juego.getPrecio();
+					for (Juego busca2 : juegos) {
+						if (busca2.getId() == busca.intValue()) {
+							fact += juegos.toString() + "\n";
+							total += busca2.getPrecio();
 						}
 					}
 					
@@ -135,7 +157,7 @@ public class Main {
 						+ "TOTAL A PAGAR : " + total);
 						
 				
-				**/
+				
 				break;
 			}case 4: {
 				System.out.println("Se ha cancelado la compra");
@@ -151,18 +173,108 @@ public class Main {
 	}
 	
 	public static void modificarCliente() {
+		Escaner esc = new Escaner();
+		int ele = 0;
+		String id = "";
+		//Eleccion del usuario
+		System.out.println("Escriba el DNI del usuario o S para salir");
+		ele = esc.nextInt();
+		for (Usuario user : usuarios) {
+			if (id.equalsIgnoreCase(user.getDni())) {
+				System.out.println(user.getNombre() + "sera cambiado");
+				// Elegir que campo desea cambiar
+				System.out.println("Que se debe cambiar: \n"
+									+ "1- Nombre \n"
+									+ "2- DNI \n"
+									+ "3- Telefono \n"
+									+ "4- Email \n"
+									+ "5- Edad \n"
+									+ "6- Salir \n");
+				do {
+					ele = esc.nextInt();
+					switch (ele) {
+					case 1:
+						user.setNombre(esc.next());
+						
+						break;
+					case 2:
+						user.setDni(esc.next());
+						
+						break;
+					case 3:
+						user.setTlfn(esc.nextInt());
+						
+						break;
+					case 4:
+						user.setMail(esc.next());
+						
+						break;
+					case 5:
+						user.setEdad(esc.nextInt());
+						
+						break;
+					case 6:
+						System.out.println("Saliendo...");
+						break;
+			
+					default:
+						System.out.println("Eleccion incorrecta vuelva a intentarlo");
+					}
+				}while(ele !=6);
+				
+			}else if (id.equalsIgnoreCase("s")) {
+				System.out.println("volviendo al menu inicial...");
+				break;	
+			}
+		}
 		
-		System.out.println("Que se debe cambiar: \n"
-							+ "");
+		
 		
 	}
 	
 	public static void añadirJuego() {
+		Escaner esc = new Escaner();
+		Juego juegoNuevo = new Juego();
+		
+		System.out.println("Escriba el id");
+		juegoNuevo.setId(esc.nextInt());
+		
+		System.out.println("Escriba el nombre");
+		juegoNuevo.setNombre(esc.next());
+		
+		System.out.println("Escriba una descripcion");
+		juegoNuevo.setDesc(esc.next());
+		
+		System.out.println("Escriba la categoria");
+		juegoNuevo.setCateg();
+		
+		System.out.println("Escriba el pegi");
+		juegoNuevo.setPegi(esc.nextInt());
+		
+		System.out.println("Escriba una descripcion del pegui");
+		juegoNuevo.setDescPegi(esc.next());
+		
+		juegos.add(juegoNuevo);
 		
 	}
 	
 	public static void añadirCliente() {
+		Escaner esc = new Escaner();
+		Usuario userNu = new Usuario();
 		
+		System.out.println("Escriba el nombre");
+		userNu.setNombre(esc.next());
+		System.out.println("Escriba el dni");
+		userNu.setDni(esc.next());
+		System.out.println("Escriba el tlfn");
+		userNu.setTlfn(esc.nextInt());
+		System.out.println("Escriba el mail");
+		userNu.setMail(esc.next());
+		System.out.println("Escriba la edad");
+		userNu.setEdad(esc.nextInt());
+		
+		usuarios.add(userNu);
+		System.out.println("se añadio correctamente al usuario " + userNu.getNombre());
 	}
 
 }
