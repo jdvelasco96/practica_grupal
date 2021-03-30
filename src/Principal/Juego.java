@@ -148,13 +148,16 @@ public class Juego {
 	
 	
 	}
+	@Override 
 	public String toString() {
 		
-		return("Nombre: "+getNombre()+
+		return "ID: " + getId() + "\n" +
+				"Nombre: "+getNombre()+
 				"\n Descripcion: "+getDesc()+
 				"\n Categoria: "+getCateg()+
 				"\n Pegi: "+getPegi()+
-				"\n Descripcion de Pegi: "+getDescPegi());
+				"\n Descripcion de Pegi: "+getDescPegi() + "\n"
+				+ "----------------------------------------------------------------------- \n";
 	}
 	
 	

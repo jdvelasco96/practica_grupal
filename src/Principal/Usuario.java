@@ -55,6 +55,9 @@ public class Usuario {
 		public void setEdad(int edad) {
 			this.edad=edad;
 		}
+		public String getVa() {
+			return getNombre() + ";" + getDni() + ";" + getTlfn() + ";" + getMail() + ";" + getEdad();
+		}
 		public String toString() {
 			
 			return "- Nombre: " + getNombre() + "\n"
