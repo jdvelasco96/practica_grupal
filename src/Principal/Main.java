@@ -1,13 +1,14 @@
 package Principal;
 
-import java.io.*;
 import java.util.*;
 
 import Utiles.*;
 
 public class Main {
+	// ALMACENAR LOS DATOS 
 	public static ArrayList<Juego> juegos = new ArrayList<Juego>();
 	public static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	// INICIO MAIN
 	public static void main(String[] args) {
 		
 		initialicer();
@@ -17,66 +18,103 @@ public class Main {
 					+ "2- Modificar Cliente " + "\n"
 					+ "3- Añadir Juego \n"
 					+ "4- Añadir Cliente \n"
-					+ "5- Salir"
+					+ "5- Salir \n"
 					+ "---------------------------------------------";
 		Escaner esc = new Escaner();
-		
+		//PRIMER MENU DE OPCIONES
 		do {
 			System.out.println(menu);
 			switch (ele = esc.nextInt()) {
 			case 1: {
 				
 				compra();
+				break;
 			}
 			case 2: {
 				
 				modificarCliente();
+				break;
 			}
 			case 3: {
 				
 				añadirJuego();
+				break;
 			}
 			case 4: {
 				
 				añadirCliente();
+				break;
 			}
 			case 5: {
-				ArrayList<String> list = new ArrayList<String>();
-				for (Juego juegoG : juegos) {
-					list.add(juegoG.getVa());
-				}
-				try {
-					Utiles.EscrituraFichero.escribirFichero(list);
-				} catch (Exception e) {
-					System.out.println("ocurrio un error al guardar");
-				}
 				
-				System.out.println("Saliendo...");
+				// GUARDAR LOS CAMBIOS DE LOS VALORES.
+				boolean flag = false;
+				do {
+					ArrayList<String> gameList = new ArrayList<String>();
+					ArrayList<String> userList = new ArrayList<String>();
+					for (Juego juegoG : juegos) {
+						gameList.add(juegoG.getVa());
+					}
+					for (Usuario userG : usuarios) {
+						userList.add(userG.getVa());
+					}
+					
+					try {
+						Utiles.EscrituraFichero.escribirFichero(gameList);
+						
+					} catch (Exception e) {
+						System.out.println("ocurrio un error al guardar los juegos");
+					}
+					try {
+						Utiles.EscrituraFichero.escribirFichero(userList);
+						flag = true;
+					} catch (Exception e) {
+						System.out.println("ocurrio un error al guardar los usuarios");
+						e.printStackTrace();
+					}
+					
+					System.out.println("Saliendo...");
+					
+				}while(flag != true);
+				break;
 			}
 			default:
 				System.out.println("Opcion incorrecta vuelva a intentarlo...");
 			}
-		}while(ele != 3);
+		}while(ele != 5 );
 
 	}
-	
+	// CARGAR LOS DATOS DE LOS FICHEROS PREDEFINIDOS. TOCARIA ELEGIRLOS AUTOMATICAMENTE PERO NO TENEMOS TIEMPO :D 
 	public static void initialicer() {
 		String[] datos;
 		try {
-			for (String string : Utiles.LecturaFichero.leerFichero("juegos.txt")) {
-				datos = string.split(string);
+			for (String string : Utiles.LecturaFichero.leerFichero("juegos.csv")) {
+				
+				datos = string.split(";");
 				juegos.add(new Juego(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],Integer.parseInt(datos[4]),datos[5],Float.parseFloat(datos[6])));
-				System.out.println(string.toString());
+				
 			}
 		} catch (Exception e) {
 			System.out.println("error al cargar");
+			e.printStackTrace();
+		}
+		
+		try {
+			for (String string : Utiles.LecturaFichero.leerFichero("usuario.txt")) {
+				datos = string.split(";");
+				usuarios.add(new Usuario(datos[0],datos[1],Integer.parseInt(datos[2]),datos[3],Integer.parseInt(datos[4])));
+			}
+			
+		} catch (Exception e) { 
+			System.out.println("error al cargar");
+			e.printStackTrace();
 		}
 		
 		
 		
-		
 	}
 	
+	// MENU DE ACCIONES AL COMPRAR PRODUCTOS
 	public static void compra() {
 		Escaner esc = new Escaner();
 		int total = 0;
@@ -93,9 +131,12 @@ public class Main {
 					+ "\t 2- Quitar del carro \n"
 					+ "\t 3- Pagar \n"
 					+ "\t 4- Cancelar compra \n";
-		
+		System.out.println(juegos.toString());
 		do {
-			System.out.println(juegos.toString());
+			flagCom = false;
+			flagDev = false;
+			ele = 0;
+			id = 0;
 			System.out.println(menu);
 		
 			switch (ele = esc.nextInt()) {
@@ -108,10 +149,12 @@ public class Main {
 					if (busca.getId() == id) {
 						carrito.add(id);
 						flagCom = true;
+						System.out.println("se añadio correctamente " + busca.getNombre());
 						break;
-					}					
+					}
+					
 				}
-				}while(flagCom == true);
+				}while(flagCom != true);
 				
 				break;
 			}case 2: {
@@ -134,28 +177,37 @@ public class Main {
 					System.out.println("Juego no se encuentra en el carro");
 				}
 				
-				}while(flagDev == true);
+				}while(flagDev != true);
 				
 				
 				break;
 			}
 			case 3: {
 				
-				fact = "Se ha comprado \n ";
 				
-				for (Integer busca : carrito) {
-					for (Juego busca2 : juegos) {
-						if (busca2.getId() == busca.intValue()) {
-							fact += juegos.toString() + "\n";
-							total += busca2.getPrecio();
-						}
-					}
-					
-				}
-				System.out.println(fact + "\n"
-						+ "--------------------------------------------------------"
-						+ "TOTAL A PAGAR : " + total);
+				if (carrito.size()>0) {
 						
+					
+					fact = "Se ha comprado \n ";
+					
+					for (Integer busca : carrito) {
+						for (Juego busca2 : juegos) {
+							if (busca == busca2.getId()) {
+								fact += busca2.toString() + "\n";
+								total += busca2.getPrecio();
+								
+							}
+						}
+						
+					}
+					System.out.println(fact + "\n"
+							+ "---------------------------------------------"
+							+ "TOTAL A PAGAR : " + total + "€");
+					ele = 4;
+				}
+				else {
+					System.out.println("No hay nada en el carrito.");
+				}
 				
 				
 				break;
@@ -172,12 +224,13 @@ public class Main {
 		
 	}
 	
+	// MODIFICAR UN CLIENTE EXISTENE
 	public static void modificarCliente() {
 		Escaner esc = new Escaner();
 		int ele = 0;
 		String id = "";
 		//Eleccion del usuario
-		System.out.println("Escriba el DNI del usuario o S para salir");
+		System.out.println("Escriba el DNI del usuario o 10 para salir");
 		ele = esc.nextInt();
 		for (Usuario user : usuarios) {
 			if (id.equalsIgnoreCase(user.getDni())) {
@@ -232,12 +285,28 @@ public class Main {
 		
 	}
 	
+	// AÑADIR UN JUEGO A LA LISTA
 	public static void añadirJuego() {
 		Escaner esc = new Escaner();
 		Juego juegoNuevo = new Juego();
-		
+		int id = 0;
+		boolean flag = false;
 		System.out.println("Escriba el id");
-		juegoNuevo.setId(esc.nextInt());
+		do {
+			esc = new Escaner();
+			id = esc.nextInt();
+			for (int i = 0; i < juegos.size(); i++) {
+				if (id == juegos.get(i).getId() ) {
+					System.out.println("el id ya existe vuelva a intentarlo");
+					break;
+				}else if (i+1 == juegos.size()) {
+					System.out.println("se añadio correctamente");
+					flag = true;
+					
+				}
+								
+			}
+		}while(flag != true);
 		
 		System.out.println("Escriba el nombre");
 		juegoNuevo.setNombre(esc.next());
@@ -255,9 +324,11 @@ public class Main {
 		juegoNuevo.setDescPegi(esc.next());
 		
 		juegos.add(juegoNuevo);
+		System.out.println("se añadio correctamente el juego " + juegoNuevo.getNombre());
 		
 	}
 	
+	// AÑADIR UN CLIENTE A LA LISTA
 	public static void añadirCliente() {
 		Escaner esc = new Escaner();
 		Usuario userNu = new Usuario();
