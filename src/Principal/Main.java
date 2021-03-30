@@ -39,7 +39,7 @@ public class Main {
 	
 	public static void compra() {
 		Escaner esc = new Escaner();
-		
+		int total = 0;
 		int ele = 0;
 		Integer id = 0;
 		boolean flagCom = false;
@@ -84,11 +84,12 @@ public class Main {
 				id = esc.nextInt;
 				if (carrito.contains(id)) {
 					for (int i = 0; i < carrito.zice() ; i ++) {
-					
-						carrito.remove(carrito.get(i));
-						flag = true;
-						syso("Se ha eliminado el juego de la lista")
-						break;
+						if(id== carrito.get(i)){
+							carrito.remove(carrito.get(i));
+							flag = true;
+							syso("Se ha eliminado el juego de la lista")
+							break;
+						}
 					}
 					
 				}else{
@@ -103,13 +104,22 @@ public class Main {
 			case 3: {
 				
 				fact = "Se ha comprado \n ";
+				/**
 				for (Integer busca : carrito) {
-					fact += "--> " + Juego.
+					for (Juego busca2 : juego) {
+						if (busca == juego.getId()) {
+							fact += juego.toString() + "\n";
+							total += juego.getPrecio();
+						}
+					}
 					
 				}
+				System.out.println(fact + "\n"
+						+ "--------------------------------------------------------"
+						+ "TOTAL A PAGAR : " + total);
 						
 				
-				
+				**/
 				break;
 			}case 4: {
 				System.out.println("Se ha cancelado la compra");
