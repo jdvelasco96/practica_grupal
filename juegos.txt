@@ -1,0 +1,11 @@
+forza horizon;juegos de carreras online;carreras;3	
+hunt;juego en primera persona online;shooter;18;violence in game purchases
+warframe;disparos y botin;shooter;18;violence online gameplay
+valheim;supervivencia mundo abierto;rol;sin pegi	
+warzone;battle royale;shooter;18;violence
+rocket league;coches que marcan gol;deporte;7						
+minecraft;juego de cuadrados;supervivencia;3	
+spyro;dragon que busca gemas;supervivencia;sin pegi	
+fifa20;marca gol para ganar;deporte;sin pegi
+pro20;deporte de marcar gol;deporte;sin pegi
+ark;tios deformes con dinosaurios;supervivencia;7
