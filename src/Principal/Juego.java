@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Juego {
 	
 	Scanner ent= new Scanner(System.in);
-	
+	private int id;
 	private String nombre;
 	private String desc;
 	private String categ;
@@ -20,7 +20,8 @@ public class Juego {
 		pegi=0;
 		descPegi="";
 	}
-	public Juego(String nombre,String desc,String categ,int pegi,String descPegi) {
+	public Juego(int id,String nombre,String desc,String categ,int pegi,String descPegi) {
+		this.id = id;
 		this.nombre=nombre;
 		this.desc=desc;
 		this.categ=categ;
@@ -28,6 +29,14 @@ public class Juego {
 		this.descPegi=descPegi;
 	}
 	
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	

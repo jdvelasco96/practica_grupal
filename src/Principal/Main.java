@@ -1,13 +1,19 @@
 package Principal;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import Utiles.Escaner;
+import Utiles.*;
 
 public class Main {
 
 	public static void main(String[] args) {
+		ArrayList<Juego> juegos = new ArrayList<Juego>();
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		
+		
 		int ele = 0;
 		String menu = "1- Comprar juegos " + "\n"
 					+ "2- Modificar Cliente " + "\n"
@@ -60,7 +66,7 @@ public class Main {
 		
 		String fact = "";
 		String menu = "\t 1- añadir al carro \n"
-					+ "\t 2- Quitar del carro"
+					+ "\t 2- Quitar del carro \n"
 					+ "\t 3- Pagar \n"
 					+ "\t 4- Cancelar compra \n";
 		
@@ -70,11 +76,11 @@ public class Main {
 		
 			switch (ele = esc.nextInt()) {
 			case 1: {
-				
 				/**
+				
 				do {
 				System.out.println("Escriba el ID");
-				id = esc.nextInt;
+				id = esc.nextInt();
 				for (Juego busca : Juego) {
 					if (busca.getId() == id) {
 						carrito.add(id);
