@@ -17,7 +17,6 @@ public class EscrituraFichero {
 		try {
 			escribirFichero(pruebas);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -26,21 +25,17 @@ public class EscrituraFichero {
 		Scanner sc= new Scanner(System.in);
 		File directorio=null;
 		System.out.println("Escribe el directorio donde deseas guardar los datos");
-		String dir= sc.next();
-		dir.replace('/', '\\');
-		directorio = new File(dir);
-		for (File x : directorio.listFiles()) {
-			if (!x.isDirectory()) {
-				BufferedReader br=new BufferedReader(new FileReader(a.toString()));
-				BufferedWriter bw=new BufferedWriter(new FileWriter(x, true));
-				while (br.ready()) {
-					bw.write(br.readLine());
-					bw.newLine();
-				}
-				br.close();
-				bw.close();
-			}
+		
+		directorio = new File(sc.next().replace('/','\\'));
+		System.out.println(directorio.getAbsolutePath());
+				
+		BufferedWriter bw=new BufferedWriter(new FileWriter(directorio, true));
+				
+		for (String z : a) {
+			bw.write(z);
+			bw.newLine();
 		}
+		bw.close();
 		sc.close();
 	}
 }
