@@ -63,13 +63,14 @@ public class Main {
 	public static void initialicer() {
 		String[] datos;
 		try {
-			for (String string : Utiles.LecturaFichero.leerFichero("juegos.txt")) {
+			for (String string : Utiles.LecturaFichero.leerFichero("juegos.csv")) {
 				datos = string.split(string);
 				juegos.add(new Juego(Integer.parseInt(datos[0]),datos[1],datos[2],datos[3],Integer.parseInt(datos[4]),datos[5],Float.parseFloat(datos[6])));
 				System.out.println(string.toString());
 			}
 		} catch (Exception e) {
 			System.out.println("error al cargar");
+			e.printStackTrace();
 		}
 		
 		
