@@ -104,11 +104,33 @@ public class Juego {
 	
 	
 	}
-	public void setPegi(int pegi) {
+	public void setPegi() {
+		int num=0;
+
+		System.out.println("Introduce el Pegi del Juego"
+				+ "\n 1-Pegi 3	2-Pegi 7	3-Pegi 12	4-Pegi 16	5-Pegi 18");
 		
-		//3,7,12,16,18
-		this.pegi = pegi;
-	
+		num=ent.nextInt();
+		switch(num) {
+		
+			case(1):
+				this.pegi = 3;
+				break;
+			
+			case(2):
+				this.pegi = 7;
+				break;
+			
+			case(3):
+				this.pegi = 12;
+				break;
+			case(4):
+				this.pegi = 16;
+				break;
+			case(5):
+				this.pegi = 18;
+				break;
+		}
 	
 	}
 	public String getDescPegi() {
@@ -117,6 +139,8 @@ public class Juego {
 	
 	}
 	public void setDescPegi(String descPegi) {
+		// Lenguaje Soez, Violencia, Miedo, Juego, Sexo, Drogas, Discriminacion, Incluye Compras
+		
 		this.descPegi = descPegi;
 	
 	
