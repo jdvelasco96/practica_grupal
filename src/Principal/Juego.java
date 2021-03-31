@@ -150,6 +150,7 @@ public class Juego {
 				this.pegi = 18;
 				break;
 		}
+	}
 	
 	public String getDescPegi() {
 		return descPegi;
