@@ -22,6 +22,7 @@ public class Juego {
 		descPegi="";
 		precio = 0;
 	}
+	
 	public Juego(int id,String nombre,String desc,String categ,int pegi,String descPegi,float precio) {
 		this.id = id;
 		this.nombre=nombre;
@@ -32,49 +33,40 @@ public class Juego {
 		this.precio = precio;
 	}
 	
-	
-	
 	public float getPrecio() {
 		return precio;
 	}
+	
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
+	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getNombre() {
 		return nombre;
-	
-	
-	
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-		
-		
-		
 	}
+	
 	public String getDesc() {
 		return desc;
-		
-		
-		
 	}
+	
 	public void setDesc(String desc) {
 		this.desc = desc;
-		
-		
-		
 	}
 	
 	public String getCateg() {
 		return categ;
-		
-		
 	}
 	
 	public String getVa() {
@@ -126,28 +118,24 @@ public class Juego {
 				break;
 		}	
 	}
+	
 	public int getPegi() {
 		return pegi;
-	
-	
 	}
+	
 	public void setPegi(int pegi) {
-		
 		//3,7,12,16,18
 		this.pegi = pegi;
-	
-	
 	}
+	
 	public String getDescPegi() {
 		return descPegi;
-	
-	
 	}
+	
 	public void setDescPegi(String descPegi) {
 		this.descPegi = descPegi;
-	
-	
 	}
+	
 	@Override 
 	public String toString() {
 		
@@ -159,12 +147,4 @@ public class Juego {
 				"\n Descripcion de Pegi: "+getDescPegi() + "\n"
 				+ "----------------------------------------------------------------------- \n";
 	}
-	
-	
-	
-	
-	
-	
-	
-
 }

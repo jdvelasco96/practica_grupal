@@ -16,8 +16,8 @@ public class Main {
 		int ele = 0;
 		String menu = "1- Comprar juegos " + "\n"
 					+ "2- Modificar Cliente " + "\n"
-					+ "3- AÃ±adir Juego \n"
-					+ "4- AÃ±adir Cliente \n"
+					+ "3- Añadir Juego \n"
+					+ "4- Añadir Cliente \n"
 					+ "5- Salir \n"
 					+ "---------------------------------------------";
 		Escaner esc = new Escaner();
@@ -37,12 +37,12 @@ public class Main {
 			}
 			case 3: {
 				
-				aÃ±adirJuego();
+				añadirJuego();
 				break;
 			}
 			case 4: {
 				
-				aÃ±adirCliente();
+				añadirCliente();
 				break;
 			}
 			case 5: {
@@ -126,7 +126,7 @@ public class Main {
 		ArrayList<Integer> carrito = new ArrayList<Integer>(); 
 		
 		String fact = "";
-		String menu = "\t 1- aÃ±adir al carro \n"
+		String menu = "\t 1- Añadir al carro \n"
 					+ "\t 2- Quitar del carro \n"
 					+ "\t 3- Pagar \n"
 					+ "\t 4- Cancelar compra \n";
@@ -148,7 +148,7 @@ public class Main {
 					if (busca.getId() == id) {
 						carrito.add(id);
 						flagCom = true;
-						System.out.println("se aÃ±adio correctamente " + busca.getNombre());
+						System.out.println("se añadio correctamente " + busca.getNombre());
 						break;
 					}
 					
@@ -201,7 +201,7 @@ public class Main {
 					}
 					System.out.println(fact + "\n"
 							+ "---------------------------------------------"
-							+ "TOTAL A PAGAR : " + total + "Â€");
+							+ "TOTAL A PAGAR : " + total + "€");
 					ele = 4;
 				}
 				else {
@@ -285,7 +285,7 @@ public class Main {
 	}
 	
 	// AÃ‘ADIR UN JUEGO A LA LISTA
-	public static void aÃ±adirJuego() {
+	public static void añadirJuego() {
 		Escaner esc = new Escaner();
 		Juego juegoNuevo = new Juego();
 		int id = 0;
@@ -299,7 +299,7 @@ public class Main {
 					System.out.println("el id ya existe vuelva a intentarlo");
 					break;
 				}else if (i+1 == juegos.size()) {
-					System.out.println("se aÃ±adio correctamente");
+					System.out.println("se añadio correctamente");
 					flag = true;
 					
 				}
@@ -319,16 +319,16 @@ public class Main {
 		System.out.println("Escriba el pegi");
 		juegoNuevo.setPegi(esc.nextInt());
 		
-		System.out.println("Escriba una descripcion del pegui");
+		System.out.println("Escriba una descripcion del pegi");
 		juegoNuevo.setDescPegi(esc.next());
 		
 		juegos.add(juegoNuevo);
-		System.out.println("se aÃ±adio correctamente el juego " + juegoNuevo.getNombre());
+		System.out.println("se añadio correctamente el juego " + juegoNuevo.getNombre());
 		
 	}
 	
 	// AÃ‘ADIR UN CLIENTE A LA LISTA
-	public static void aÃ±adirCliente() {
+	public static void añadirCliente() {
 		Escaner esc = new Escaner();
 		Usuario userNu = new Usuario();
 		
@@ -344,7 +344,7 @@ public class Main {
 		userNu.setEdad(esc.nextInt());
 		
 		usuarios.add(userNu);
-		System.out.println("se aÃ±adio correctamente al usuario " + userNu.getNombre());
+		System.out.println("se añadio correctamente al usuario " + userNu.getNombre());
 	}
 
 }
