@@ -5,59 +5,78 @@ import java.util.Scanner;
 public class Juego {
 	
 	Scanner ent= new Scanner(System.in);
-	
+	private int id;
 	private String nombre;
 	private String desc;
 	private String categ;
 	private int pegi;
 	private String descPegi;
+	private float precio;
 	
 	public Juego() {
-		
+		id = 0;
 		nombre="";
 		desc="";
 		categ="";
 		pegi=0;
 		descPegi="";
+		precio = 0;
 	}
-	public Juego(String nombre,String desc,String categ,int pegi,String descPegi) {
+	
+	public Juego(int id,String nombre,String desc,String categ,int pegi,String descPegi,float precio) {
+		this.id = id;
 		this.nombre=nombre;
 		this.desc=desc;
 		this.categ=categ;
 		this.pegi=pegi;
 		this.descPegi=descPegi;
+		this.precio = precio;
+	}
+	
+	public float getPrecio() {
+		return precio;
+	}
+	
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getNombre() {
 		return nombre;
-	
-	
-	
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-		
-		
-		
 	}
+	
 	public String getDesc() {
 		return desc;
-		
-		
-		
 	}
+	
 	public void setDesc(String desc) {
 		this.desc = desc;
-		
-		
-		
 	}
 	
 	public String getCateg() {
 		return categ;
-		
-		
 	}
+	
+	public String getVa() {
+		
+		return getId() + ";" + getNombre() 
+			+ ";" + getDesc() + ";" + getCateg() 
+			+ ";" + getPegi() + ";" + getDescPegi() 
+			+ ";"+ getPrecio();
+	}
+	
 	public void setCateg() {
 		int num=0;
 		System.out.println("Selecciona la categoria que corresponde"
@@ -99,11 +118,11 @@ public class Juego {
 				break;
 		}	
 	}
+	
 	public int getPegi() {
 		return pegi;
-	
-	
 	}
+
 	public void setPegi() {
 		int num=0;
 
@@ -132,33 +151,25 @@ public class Juego {
 				break;
 		}
 	
-	}
 	public String getDescPegi() {
 		return descPegi;
-	
-	
 	}
+	
 	public void setDescPegi(String descPegi) {
 		// Lenguaje Soez, Violencia, Miedo, Juego, Sexo, Drogas, Discriminacion, Incluye Compras
 		
 		this.descPegi = descPegi;
-	
-	
 	}
+	
+	@Override 
 	public String toString() {
 		
-		return("Nombre: "+getNombre()+
+		return "ID: " + getId() + "\n" +
+				"Nombre: "+getNombre()+
 				"\n Descripcion: "+getDesc()+
 				"\n Categoria: "+getCateg()+
 				"\n Pegi: "+getPegi()+
-				"\n Descripcion de Pegi: "+getDescPegi());
+				"\n Descripcion de Pegi: "+getDescPegi() + "\n"
+				+ "----------------------------------------------------------------------- \n";
 	}
-	
-	
-	
-	
-	
-	
-	
-
 }
